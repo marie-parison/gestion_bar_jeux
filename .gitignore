@@ -1,7 +1,8 @@
 **/node_modules
 .idea
 .vscode
-dist
-/mysql_data
+/dist
 
 _tools/games.json
+
+/mysql_data
