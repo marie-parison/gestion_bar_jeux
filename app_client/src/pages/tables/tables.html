@@ -1,0 +1,26 @@
+<!--
+  Generated template for the TablesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Tables</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 *ngFor="let table of tables">
+        <div>{{table.nb}}</div>
+        <div *ngIf="table.available">libre</div>
+        <div *ngIf="!table.available">occupée</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
