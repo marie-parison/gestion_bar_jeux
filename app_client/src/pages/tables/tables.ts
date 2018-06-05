@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TablesProvider, ITableData} from '../../providers/tables-service/tables-service'
+import { NewTablePage } from '../new-table/new-table';
 
 /**
  * Generated class for the TablesPage page.
@@ -27,6 +28,16 @@ export class TablesPage {
       this.tables = data;
       console.log(this.tables);
     });
+  }
+
+  onTable(event, table) {
+    if(table.available) {
+      this.navCtrl.push(NewTablePage, {
+        table: table
+      });
+    } else {
+      //TODO navigation vers la page de facture
+    }
   }
   
   ionViewDidLoad() {
