@@ -15,6 +15,8 @@ import { FacturePage } from '../pages/facture/facture';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TablesProvider } from '../providers/tables-service/tables-service';
+import { ClientsProvider } from '../providers/clients/clients';
+import { InvoiceProvider } from '../providers/invoice/invoice';
 import { OrdersProvider } from '../providers/orders/orders';
 import { GamesProvider } from '../providers/games/games';
 
@@ -50,8 +52,10 @@ import { GamesProvider } from '../providers/games/games';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TablesProvider,
+    ClientsProvider,
+    InvoiceProvider,
     OrdersProvider,
-    GamesProvider
+    GamesProvider,
   ]
 })
 export class AppModule {}
