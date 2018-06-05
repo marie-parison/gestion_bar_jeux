@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "name": "",
+        "firstname": "",
+        "birthdate": "",
+        "email":"",
+        "genre": ""
+    },
+    {
+        "id": 2,
+        "name": "",
+        "firstname": "",
+        "birthdate": "",
+        "email":"",        
+        "genre": ""
+    },
+    {
+        "id": 3,
+        "name": "Marie",
+        "firstname": "Parison",
+        "birthdate": "09-06-1991",
+        "email":"marie.parison@coding-academy.fr",        
+        "genre": "female"
+    },
+    {
+        "id": 4,
+        "name": "",
+        "firstname": "",
+        "birthdate": "",
+        "email":"",        
+        "genre": ""
+    }
+]

@@ -14,6 +14,8 @@ import { NewTablePage } from '../pages/new-table/new-table';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TablesProvider } from '../providers/tables-service/tables-service';
+import { ClientsProvider } from '../providers/clients/clients';
+import { InvoiceProvider } from '../providers/invoice/invoice';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { TablesProvider } from '../providers/tables-service/tables-service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TablesProvider
+    TablesProvider,
+    ClientsProvider,
+    InvoiceProvider,
   ]
 })
 export class AppModule {}
