@@ -1,0 +1,19 @@
+GET /tables
+
+GET /clients?email=
+
+POST /clients
+
+PUT /clients/:id
+
+POST /invoices
+
+GET /invoices/:id
+
+PUT /invoices/:id/boards/:id
+
+GET /boards
+
+POST /invoices/:id/boards/:id
+
+

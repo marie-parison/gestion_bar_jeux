@@ -1,0 +1,13 @@
+### Get request with a header
+GET localhost:3000/tables
+Accept: application/json
+
+### Get request with parameter
+GET localhost:3000/clients?email?mamama@gmail.com
+Accept: application/json
+
+### Get request with environment variables
+GET {{host}}/get?show_env={{show_env}}
+Accept: application/json
+
+###

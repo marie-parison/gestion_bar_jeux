@@ -1,13 +1,15 @@
 import * as express from 'express';
 import * as cookieParser from 'cookie-parser';
 import * as logger from 'morgan';
-import {tablesRouter} from "./routes";
+
 import db from "./models/";
 
-// let db = require('./models/Db');
-
-// import {Db} from './models/';
-// import * as Sequelize from 'sequelize';
+import {
+    boardsRouter,
+    clientsRouter,
+    invoicesRouter,
+    tablesRouter
+} from "./routes";
 
 const app = express();
 
@@ -17,39 +19,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 db.sequelize.sync()
-    .then(() => {
-        console.log('Connection successfull');
-        main();
-    })
-    .catch((err: any) => {
-       console.error('Unable to connect to the database', err)
-    });
-
-async function main() {
-    db.Games.findById(2, {
-        include: [
-            db.Languages,
-            db.Contents,
-            db.GamePictures,
-        ]
-    })
-        .then((game: any) => {
-            console.log(game.languages[0].id);
-            console.log(game.game_pictures[0].dataValues);
-        })
-
-    try {
-        let board = await db.Boards.findById(1, {
-            include: db.Games,
-        } );
-        // console.log(board.game);
-    } catch (e) {
-        console.log(e);
-        
-    }
-    
-}
+    .then(() => console.log('Connection successfull'))
+    .catch((err: any) => console.error('Unable to connect to the database', err));
 
 app.use('/tables', tablesRouter);
+app.use('/clients', clientsRouter);
+app.use('/invoices', invoicesRouter);
+app.use('/boards', boardsRouter);
 
 module.exports = app;
