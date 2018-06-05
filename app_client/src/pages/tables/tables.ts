@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TablesProvider, ITableData} from '../../providers/tables-service/tables-service'
 import { NewTablePage } from '../new-table/new-table';
+import { FacturePage } from '../facture/facture';
 
 /**
  * Generated class for the TablesPage page.
@@ -36,7 +37,9 @@ export class TablesPage {
         table: table
       });
     } else {
-      //TODO navigation vers la page de facture
+      this.navCtrl.push(FacturePage, {
+        id_invoice: table.id_invoice
+      });
     }
   }
   
