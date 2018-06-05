@@ -16,9 +16,11 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4 *ngFor="let table of tables">
-        <div>{{table.nb}}</div>
-        <div *ngIf="table.available">libre</div>
-        <div *ngIf="!table.available">occupée</div>
+          <button ion-button (click)="onTable($event, table)">
+            <div>TABLE {{table.nb}}</div>
+            <div *ngIf="table.available" class="green">libre</div>
+            <div *ngIf="!table.available" class="red">occupée</div>
+          </button>
       </ion-col>
     </ion-row>
   </ion-grid>

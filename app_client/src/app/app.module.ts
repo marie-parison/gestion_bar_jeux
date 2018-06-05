@@ -9,6 +9,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TablesPage } from '../pages/tables/tables';
+import { NewTablePage } from '../pages/new-table/new-table';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,6 +23,7 @@ import { TablesProvider } from '../providers/tables-service/tables-service';
     HomePage,
     TabsPage,
     TablesPage,
+    NewTablePage,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,7 @@ import { TablesProvider } from '../providers/tables-service/tables-service';
     HomePage,
     TabsPage,
     TablesPage,
+    NewTablePage,
   ],
   providers: [
     StatusBar,
