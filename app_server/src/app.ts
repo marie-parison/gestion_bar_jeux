@@ -25,7 +25,7 @@ db.sequelize.sync()
        console.error('Unable to connect to the database', err)
     });
 
-function main() {
+async function main() {
     db.Games.findById(2, {
         include: [
             db.Languages,
@@ -37,6 +37,17 @@ function main() {
             console.log(game.languages[0].id);
             console.log(game.game_pictures[0].dataValues);
         })
+
+    try {
+        let board = await db.Boards.findById(1, {
+            include: db.Games,
+        } );
+        // console.log(board.game);
+    } catch (e) {
+        console.log(e);
+        
+    }
+    
 }
 
 app.use('/tables', tablesRouter);

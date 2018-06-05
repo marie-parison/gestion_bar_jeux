@@ -2,10 +2,13 @@ require('dotenv').config();
 
 import * as Sequelize from "sequelize";
 import AuthorsFactory from "./Authors";
+import BoardsFactory from "./Boards";
 import BrandsFactory from "./Brands";
 import CategoriesFactory from "./Categories";
 import ContentsFactory from "./Contents";
+import CustomersFactory from "./Customers";
 import EditorsFactory from "./Editors";
+import FoodsFactory from "./Foods";
 import GamesFactory from "./Games";
 import GamesAuthorsFactory from "./GamesAuthors";
 import GamesCategoriesFactory from "./GamesCategories";
@@ -13,6 +16,11 @@ import GamesEditorsFactory from "./GamesEditors";
 import GamesLanguagesFactory from "./GamesLanguages";
 import GamesMecanismsFactory from "./GamesMecanisms";
 import GamePicturesFactory from "./GamePictures";
+import InvoicesFactory from "./Invoices";
+import InvoicesCustomersFactory from "./InvoicesCustomers";
+import InvoicesBoardsFactory from "./InvoicesBoards";
+import InvoicesFoodsFactory from "./InvoicesFoods";
+import TablesFactory from "./Tables";
 import LanguagesFactory from "./Languages";
 import MecanismsFactory from "./Mecanisms";
 
@@ -47,10 +55,13 @@ const db: any = {
     sequelize,
     Sequelize,
     Authors: AuthorsFactory(sequelize),
+    Boards: BoardsFactory(sequelize),
     Brands: BrandsFactory(sequelize),
     Categories: CategoriesFactory(sequelize),
     Contents: ContentsFactory(sequelize),
+    Customers: CustomersFactory(sequelize),
     Editors: EditorsFactory(sequelize),
+    Foods: FoodsFactory(sequelize),
     Games: GamesFactory(sequelize),
     GamesAuthors: GamesAuthorsFactory(sequelize),
     GamesCategories: GamesCategoriesFactory(sequelize),
@@ -58,6 +69,11 @@ const db: any = {
     GamesLanguages: GamesLanguagesFactory(sequelize),
     GamesMecanisms: GamesMecanismsFactory(sequelize),
     GamePictures: GamePicturesFactory(sequelize),
+    Invoices: InvoicesFactory(sequelize),
+    InvoicesBoards: InvoicesBoardsFactory(sequelize),
+    InvoicesCustomers: InvoicesCustomersFactory(sequelize),
+    InvoicesFoods: InvoicesFoodsFactory(sequelize),
+    Tables: TablesFactory(sequelize),
     Languages: LanguagesFactory(sequelize),
     Mecanisms: MecanismsFactory(sequelize),
 };

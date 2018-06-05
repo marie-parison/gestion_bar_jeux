@@ -81,6 +81,10 @@ export default (sequelize: Sequelize.Sequelize) => {
             foreignKey: 'id_game',
         });
 
+        model.hasMany(db.Boards, {
+            foreignKey: 'id_game',
+        });
+
         model.hasMany(db.GamePictures, {
             foreignKey: 'id_game',
         });
