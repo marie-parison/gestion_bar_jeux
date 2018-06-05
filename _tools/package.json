@@ -1,0 +1,23 @@
+{
+  "name": "tools_for_gestion_bar",
+  "version": "1.0.0",
+  "description": "scrapping etc...",
+  "main": "dist/fill_db.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "npm run fill",
+    "fill": "npm run build && node dist/_tools/fill_db.js"
+  },
+  "author": "Denis Ma",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/sequelize": "^4.27.20",
+    "typescript": "^2.9.1"
+  },
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.10"
+  }
+}
