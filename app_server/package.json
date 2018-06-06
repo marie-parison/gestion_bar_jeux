@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "clean": "rm -r dist/",
     "build": "tsc",
     "watch": "tsc --watch",
-    "start": "npm run build && npm run watch & nodemon ./bin/www"
+    "start": "npm run clean && npm run build && npm run watch & nodemon ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
