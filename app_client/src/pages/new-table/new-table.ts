@@ -31,6 +31,7 @@ export class NewTablePage {
     public invoiceProvider: InvoiceProvider,
   ) {
     this.selectedTable = navParams.get('table');
+    console.log('constructeur de table');
   }
 
   async getClientsByTable(id_table) {
@@ -65,7 +66,6 @@ export class NewTablePage {
       if (clientEmail) {
         let client = await this.clientsProvider.getClientByEmail({ email: clientEmail });
         // this.clients.push(client);
-        await this.clientsProvider.assignClientToTable(client, this.selectedTable);
         let newClients = [...this.clients, client];
         this.clients = newClients;
       }
@@ -77,12 +77,9 @@ export class NewTablePage {
 
   async onNewClient() {
     this.navCtrl.push(ClientFormPage, {
-      table: this.selectedTable
+      table: this.selectedTable,
+      clients: this.clients,
     });
-  }
-
-  openClientForm() {
-    // TODO afficher le formulaire de création de client quand on clique sur "nouveau client"
   }
 
   ionViewDidLoad() {

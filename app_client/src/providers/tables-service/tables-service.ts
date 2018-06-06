@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export interface ITableData {
@@ -7,23 +7,30 @@ export interface ITableData {
   available: boolean;
   iscaca?: boolean;
 }
-/*
-  Generated class for the TablesServiceProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
+
+/*
+Generated class for the TablesServiceProvider provider.
+
+See https://angular.io/guide/dependency-injection for more info on providers
+and Angular DI.
 */
 @Injectable()
 export class TablesProvider {
-
-  apiUrl = '';
-
+  
+  apiUrl = 'http://localhost:3000';
+  
   constructor(public http: HttpClient) {
     console.log('Hello TablesServiceProvider Provider');
   }
 
   getTables(): Promise<ITableData[]> {
-    return this.http.get<ITableData[]>('../../assets/mocks/mock-tables.json').toPromise();
+    return this.http.get<ITableData[]>(this.apiUrl + '/tables', httpOptions).toPromise();
   }
 
 }
