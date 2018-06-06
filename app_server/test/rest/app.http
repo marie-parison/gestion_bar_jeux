@@ -2,6 +2,10 @@
 GET localhost:3000/tables
 Accept: application/json
 
+### Get request with a query
+GET localhost:3000/tables?lol=dsdasda
+Accept: application/json
+
 ### Get request with parameter
 GET localhost:3000/clients?email?mamama@gmail.com
 Accept: application/json

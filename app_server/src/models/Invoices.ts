@@ -3,7 +3,6 @@ import * as Sequelize from "sequelize";
 interface InvoicesAttributes {
     id?: number;
     id_table: number;
-    id_board: number;
     start_at: string;
     finish_at?: string;
     is_paid: boolean;
@@ -22,13 +21,6 @@ const attributes: SequelizeAttributes<InvoicesAttributes> = {
         type: Sequelize.BIGINT,
         references: {
             model: 'tables',
-            key: 'id',
-        }
-    },
-    id_board: {
-        type: Sequelize.BIGINT,
-        references: {
-            model: 'boards',
             key: 'id',
         }
     },
@@ -51,10 +43,9 @@ const attributes: SequelizeAttributes<InvoicesAttributes> = {
 };
 
 export default (sequelize: Sequelize.Sequelize) => {
-    const model = sequelize.define<InvoicesInstance, InvoicesAttributes>("boards", attributes);
+    const model = sequelize.define<InvoicesInstance, InvoicesAttributes>("invoices", attributes);
 
     model.associate = function(db) {
-
         model.belongsToMany(db.Foods, {
             through: {
                 model: db.InvoicesFoods,

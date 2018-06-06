@@ -14,3 +14,24 @@ example:
     
 This .env file is naturally ignored by git.
 
+
+
+
+Launch the application:
+- it use typescript, so the tsc compiler is needed  
+to install it : 
+        
+        npm i -g tsc
+        
+- then install the depencies need for node:   
+       
+       npm i
+       
+       
+- you can now launch the app with package.json script  
+
+        npm start
+        
+ - this script is used for developpement side,  
+ it will build and watch .ts files, and nodemon will relaunch the app each time a modification is done.
+ 

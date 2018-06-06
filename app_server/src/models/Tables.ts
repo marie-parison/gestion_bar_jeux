@@ -30,11 +30,12 @@ const attributes: SequelizeAttributes<TablesAttributes> = {
 };
 
 export default (sequelize: Sequelize.Sequelize) => {
-    const model = sequelize.define<TablesInstance, TablesAttributes>("foods", attributes);
+    const model = sequelize.define<TablesInstance, TablesAttributes>("tables", attributes);
     model.associate = function(db) {
-        model.hasMany(db.Invoices, {
-            foreignKey: 'id_invoice',
+        model.hasOne(db.Invoices, {
+            foreignKey: 'id_table'
         });
+
     };
     return model;
 };
