@@ -1,28 +1,9 @@
 require('dotenv').config();
 
+import * as fs from 'fs';
+import * as path from 'path';
+
 import * as Sequelize from "sequelize";
-import AuthorsFactory from "./Authors";
-import BoardsFactory from "./Boards";
-import BrandsFactory from "./Brands";
-import CategoriesFactory from "./Categories";
-import ContentsFactory from "./Contents";
-import CustomersFactory from "./Customers";
-import EditorsFactory from "./Editors";
-import FoodsFactory from "./Foods";
-import GamesFactory from "./Games";
-import GamesAuthorsFactory from "./GamesAuthors";
-import GamesCategoriesFactory from "./GamesCategories";
-import GamesEditorsFactory from "./GamesEditors";
-import GamesLanguagesFactory from "./GamesLanguages";
-import GamesMecanismsFactory from "./GamesMecanisms";
-import GamePicturesFactory from "./GamePictures";
-import InvoicesFactory from "./Invoices";
-import InvoicesCustomersFactory from "./InvoicesCustomers";
-import InvoicesBoardsFactory from "./InvoicesBoards";
-import InvoicesFoodsFactory from "./InvoicesFoods";
-import TablesFactory from "./Tables";
-import LanguagesFactory from "./Languages";
-import MecanismsFactory from "./Mecanisms";
 
 // load firstly the root .env file configuration
 const dbHostname = process.env.DB_HOSTNAME || 'localhost';
@@ -50,33 +31,24 @@ const sequelize = new Sequelize(dbDatabase, dbUsername, dbPassword, {
     }
 });
 
-// object which contains all the table factory
+// object which contains without models
 const db: any = {
     sequelize,
     Sequelize,
-    Authors: AuthorsFactory(sequelize),
-    Boards: BoardsFactory(sequelize),
-    Brands: BrandsFactory(sequelize),
-    Categories: CategoriesFactory(sequelize),
-    Contents: ContentsFactory(sequelize),
-    Customers: CustomersFactory(sequelize),
-    Editors: EditorsFactory(sequelize),
-    Foods: FoodsFactory(sequelize),
-    Games: GamesFactory(sequelize),
-    GamesAuthors: GamesAuthorsFactory(sequelize),
-    GamesCategories: GamesCategoriesFactory(sequelize),
-    GamesEditors: GamesEditorsFactory(sequelize),
-    GamesLanguages: GamesLanguagesFactory(sequelize),
-    GamesMecanisms: GamesMecanismsFactory(sequelize),
-    GamePictures: GamePicturesFactory(sequelize),
-    Invoices: InvoicesFactory(sequelize),
-    InvoicesBoards: InvoicesBoardsFactory(sequelize),
-    InvoicesCustomers: InvoicesCustomersFactory(sequelize),
-    InvoicesFoods: InvoicesFoodsFactory(sequelize),
-    Tables: TablesFactory(sequelize),
-    Languages: LanguagesFactory(sequelize),
-    Mecanisms: MecanismsFactory(sequelize),
 };
+
+// We add eac models excpte itself (index.js) to the db object
+const basename = path.basename(__filename);
+fs.readdirSync(__dirname)
+    .filter(
+        file => file.indexOf('.') !== 0 &&
+            file !== basename &&
+            file.slice(-3) === '.js')
+    .forEach(file => {
+        let modelName = file.slice(0, -3);
+        let modelSequelize = require(path.join(__dirname, file)).default;
+        db[modelName] = modelSequelize(sequelize);
+    });
 
 // we launch each associate method from model to define the relationship between tables
 for(let model in db) {
