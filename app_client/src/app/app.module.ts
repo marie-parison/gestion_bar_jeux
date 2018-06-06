@@ -5,6 +5,7 @@ import { MyApp } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AboutPage } from '../pages/about/about';
+import { ClientFormPage } from '../pages/client-form/client-form';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -27,6 +28,7 @@ import { FoodProvider } from '../providers/food/food';
   declarations: [
     MyApp,
     AboutPage,
+    ClientFormPage,
     ContactPage,
     HomePage,
     TabsPage,
@@ -45,6 +47,7 @@ import { FoodProvider } from '../providers/food/food';
   entryComponents: [
     MyApp,
     AboutPage,
+    ClientFormPage,    
     ContactPage,
     HomePage,
     TabsPage,

@@ -2,13 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export interface IClientData {
-  id: number;
-  name: string;
-  surname: string;
+  id?: number;
+  lastname: string;
+  firstname: string;
   birthdate: Date;
   email: string;
-  genre: string;
-  number?: number;
+  gender: string;
 }
 
 /*
@@ -35,5 +34,14 @@ export class ClientsProvider {
     return this.http.get<IClientData>('../../assets/mocks/mock-client.json').toPromise();
   }
 
+  createClient(client): Promise<IClientData> {
+    // TODO envoyer au back le contenu du formulaire pour créer le client dans la base    
+    return this.http.get<IClientData>('../../assets/mocks/mock-client.json').toPromise();
+  }
+
+  assignClientToTable(client, table): Promise<any> {
+    // TODO demander au back d'assigner le client à la table
+    return this.http.get<IClientData>('../../assets/mocks/mock-client.json').toPromise();
+  }
 
 }

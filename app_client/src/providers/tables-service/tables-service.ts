@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 export interface ITableData {
   id: number;
-  nb: number;
+  number: number;
   available: boolean;
   iscaca?: boolean;
 }

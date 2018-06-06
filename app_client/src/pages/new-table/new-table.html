@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Table {{selectedTable.nb}}</ion-title>
+    <ion-title>Table {{selectedTable.number}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,11 +16,10 @@
 <ion-content padding>
   <h3>Ajouter des clients :</h3>
   <button ion-button (click)="onKnownClient()">Client connu</button>
-  <button ion-button>Nouveau client</button>
+  <button ion-button (click)="onNewClient()">Nouveau client</button>
   <h3>Clients :</h3>
   <ul *ngFor="let client of clients">
-      <li *ngIf="client.name">{{client.name}}</li>
-      <li *ngIf="!client.name">Client {{client.number}}</li>
+      <li>{{client.lastname}}</li>
   </ul>
 
   <button ion-button block (click)="createInvoice()">OK</button>

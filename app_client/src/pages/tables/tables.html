@@ -17,7 +17,7 @@
     <ion-row>
       <ion-col col-4 *ngFor="let table of tables">
           <button ion-button (click)="onTable($event, table)">
-            <div>TABLE {{table.nb}}</div>
+            <div>TABLE {{table.number}}</div>
             <div *ngIf="table.available" class="green">libre</div>
             <div *ngIf="!table.available" class="red">occupée</div>
           </button>
