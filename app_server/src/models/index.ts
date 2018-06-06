@@ -16,7 +16,7 @@ const sequelize = new Sequelize(dbDatabase, dbUsername, dbPassword, {
     host: dbHostname,
     port: dbPort,
     dialect: 'mysql',
-    operatorsAliases: false,
+    operatorsAliases: true,
     logging: false,
     define: {
         charset: 'utf8',

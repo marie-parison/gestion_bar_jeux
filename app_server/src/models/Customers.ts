@@ -5,6 +5,8 @@ interface CustomersAttributes {
     fistname?: string;
     lastname?: string;
     email: string;
+    gender: string;
+    birthdate: string;
 }
 
 type CustomersInstance = Sequelize.Instance<CustomersAttributes> & CustomersAttributes;
@@ -26,6 +28,16 @@ const attributes: SequelizeAttributes<CustomersAttributes> = {
     email: {
         type: Sequelize.STRING,
         allowNull: false,
+    },
+    gender: {
+        type: Sequelize.ENUM,
+        values: ['male', 'female'],
+        allowNull: false
+    },
+    birthdate: {
+        type: Sequelize.DATE,
+        allowNull: true,
+        defaultValue: null,
     }
 };
 
