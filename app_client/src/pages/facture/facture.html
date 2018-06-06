@@ -41,7 +41,7 @@
           <p>
             {{game.type}}
           </p>
-          <button *ngIf="!game.available" (click)="onReturn(i, game)"></button>
+          <button *ngIf="!game.available" (click)="onReturnGame(i, game)">Rendre</button>
           <button (click)="onDeleteGame(game)">Delete</button>
         </div>
         <div>

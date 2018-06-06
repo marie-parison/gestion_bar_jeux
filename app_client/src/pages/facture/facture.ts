@@ -44,7 +44,7 @@ export class FacturePage {
       id_invoice: this.id
     });
   }
-
+  
   public onAddOrder(){
     this.navCtrl.push(NewOrderPage, {
       id_invoice: this.id
