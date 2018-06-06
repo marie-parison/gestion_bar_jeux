@@ -1,34 +1,34 @@
 [
     {
         "id": 1,
-        "name": "",
+        "lastname": "",
         "firstname": "",
         "birthdate": "",
         "email":"",
-        "genre": ""
+        "gender": ""
     },
     {
         "id": 2,
-        "name": "",
+        "lastname": "",
         "firstname": "",
         "birthdate": "",
         "email":"",        
-        "genre": ""
+        "gender": ""
     },
     {
         "id": 3,
-        "name": "Marie",
+        "lastname": "Marie",
         "firstname": "Parison",
         "birthdate": "09-06-1991",
         "email":"marie.parison@coding-academy.fr",        
-        "genre": "female"
+        "gender": "female"
     },
     {
         "id": 4,
-        "name": "",
+        "lastname": "",
         "firstname": "",
         "birthdate": "",
         "email":"",        
-        "genre": ""
+        "gender": ""
     }
 ]

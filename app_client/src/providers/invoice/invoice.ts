@@ -21,9 +21,9 @@ export class InvoiceProvider {
     console.log('Hello InvoiceProvider Provider');
   }
 
-  createInvoice(id_table) {
+  createInvoice(id_table, clients) {
     // TODO envoyer la requête de création de facture au back, récupérer du back les données de la facture créée
-    return this.http.get<IInvoiceData[]>('../../assets/mocks/mock-invoice.json').toPromise();
+    return this.http.get<IInvoiceData>('../../assets/mocks/mock-invoice.json').toPromise();
   }
 
 }
