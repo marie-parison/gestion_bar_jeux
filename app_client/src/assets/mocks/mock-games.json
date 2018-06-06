@@ -2,11 +2,13 @@
         {
             "id": 1,
             "name": "Monopoly",
-            "type": "euuuuh"
+            "type": "euuuuh",
+            "available": true
         },
         {
             "id": 2,
             "name": "Jungle Speed",
-            "type": "don't know"
+            "type": "don't know",
+            "available": false
         }
     ]

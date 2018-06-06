@@ -11,6 +11,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { TablesPage } from '../pages/tables/tables';
 import { NewTablePage } from '../pages/new-table/new-table';
 import { FacturePage } from '../pages/facture/facture';
+import { NewOrderPage } from '../pages/new-order/new-order';
+import { NewGamePage } from '../pages/new-game/new-game';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,6 +21,7 @@ import { ClientsProvider } from '../providers/clients/clients';
 import { InvoiceProvider } from '../providers/invoice/invoice';
 import { OrdersProvider } from '../providers/orders/orders';
 import { GamesProvider } from '../providers/games/games';
+import { FoodProvider } from '../providers/food/food';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { GamesProvider } from '../providers/games/games';
     TablesPage,
     NewTablePage,
     FacturePage,
+    NewOrderPage,
+    NewGamePage,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,8 @@ import { GamesProvider } from '../providers/games/games';
     TablesPage,
     NewTablePage,
     FacturePage,
+    NewOrderPage,
+    NewGamePage,
   ],
   providers: [
     StatusBar,
@@ -56,6 +63,7 @@ import { GamesProvider } from '../providers/games/games';
     InvoiceProvider,
     OrdersProvider,
     GamesProvider,
+    FoodProvider,
   ]
 })
 export class AppModule {}
