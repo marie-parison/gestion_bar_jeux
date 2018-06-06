@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FoodProvider, FoodProvider } from '../../providers/food/food';
+import { FoodProvider } from '../../providers/food/food';
 
 /**
  * Generated class for the NewOrderPage page.
@@ -27,27 +27,6 @@ export class NewOrderPage {
     // switch(1){
     //   case (element == this.drinks)
     // }
-  }
-
-  private loadDrinks(){
-    this.FoodProvider.getDrinks()
-    .then(data => {
-      this.drinks = data
-    })
-  }
-
-  private loadMenus(){
-    this.FoodProvider.getMenus()
-    .then(data => {
-      this.menus = data
-    })
-  }
-
-  private loadDesserts(){
-    this.FoodProvider.getDesserts()
-    .then(data => {
-      this.desserts = data
-    })
   }
 
   ionViewDidLoad() {

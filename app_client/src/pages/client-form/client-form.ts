@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ITableData } from '../../providers/tables-service/tables-service';
 import { NewTablePage } from '../new-table/new-table';
-import { ClientsProvider } from '../../providers/clients/clients';
+import { ClientsProvider, IClientData } from '../../providers/clients/clients';
 
 /**
  * Generated class for the ClientFormPage page.
@@ -37,19 +37,18 @@ export class ClientFormPage {
       gender: [''],
     });
   }
-
+  
   returnToTable() {
     this.navCtrl.push(NewTablePage, {
       table: this.table
     });
   }
-
+  
   async createClient() {
-    let client = await this.clientsProvider.createClient(this.form);
-    this.clientsProvider.assignClientToTable(client, this.table);
-    this.navCtrl.push(NewTablePage, {
-      table: this.table
-    });
+    let client = await this.clientsProvider.createClient(this.form.value);
+    let tableClients = this.navParams.get('clients');
+    tableClients.push(client);
+    this.navCtrl.pop();    
   }
 
   ionViewDidLoad() {
