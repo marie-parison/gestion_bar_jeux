@@ -28,18 +28,25 @@
           </p>
           <button (click)="onDeleteOrder(order)">Delete</button>
         </div>
+        <div>
+          <button (click)="onAddOrder()">Ajouter une consommation</button>
+        </div>
       </ion-col>
       <ion-col col-6>
         <h2>Jeux</h2>
-        <div *ngFor="let game of games">
-            <p>
-              {{game.name}}
-            </p>
-            <p>
-              {{game.type}}
-            </p>
-            <button (click)="onDeleteGame(game)">Delete</button>
-          </div>
+        <div *ngFor="let game of games; let i = index">
+          <p>
+            {{game.name}}
+          </p>
+          <p>
+            {{game.type}}
+          </p>
+          <button *ngIf="!game.available" (click)="onReturn(i, game)"></button>
+          <button (click)="onDeleteGame(game)">Delete</button>
+        </div>
+        <div>
+          <button (click)="onAddGame()">Ajouter un jeu</button>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

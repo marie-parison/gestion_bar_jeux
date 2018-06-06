@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OrdersProvider, IOrderData } from '../../providers/orders/orders';
 import { GamesProvider, IGameData } from '../../providers/games/games';
+import { NewOrderPage } from '../new-order/new-order';
+import { NewGamePage } from '../new-game/new-game';
 /**
  * Generated class for the FacturePage page.
  *
@@ -20,8 +22,41 @@ export class FacturePage {
   orders: IOrderData[];
   games: IGameData[];
 
+  //TODO montant factures (tout récupérer et calcul en back ?)
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public OrdersProvider: OrdersProvider, public GamesProvider: GamesProvider) {
     this.id = navParams.get('id_invoice');
+  }
+
+  public onReturnGame(index, game: IGameData){
+
+    game.available = true;
+    
+    this.GamesProvider.returnGame(game)
+    .then(response => {
+      if(response)
+        this.games[index].available = true;
+    });
+  }
+
+  public onAddGame(){
+    this.navCtrl.push(NewGamePage, {
+      id_invoice: this.id
+    });
+  }
+
+  public onAddOrder(){
+    this.navCtrl.push(NewOrderPage, {
+      id_invoice: this.id
+    });
+  }
+
+  public onDeleteGame(game: IGameData){
+    this.GamesProvider.deleteGame(game)
+    .then(response => {
+      if(response)
+        this.games = this.games.filter(element => element != game);
+    });
   }
 
   public onDeleteOrder(order: IOrderData){
@@ -32,8 +67,8 @@ export class FacturePage {
     });
   }
 
-  private getBoards(){
-    this.GamesProvider.getGames(this.id)
+  private getGamesHistory(){
+    this.GamesProvider.getGamesHistory(this.id)
     .then(data => {
       this.games = data;
     });
@@ -48,7 +83,7 @@ export class FacturePage {
 
   ionViewDidLoad() {
     this.getOrders();
-    this.getBoards();
+    this.getGamesHistory();
   }
 
 }
