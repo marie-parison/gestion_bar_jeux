@@ -16,16 +16,17 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col col-4>
-        <button ion-button (click)="display(drinks)">
-          <div>Boisson</div>
-        </button>
-        <button ion-button (click)="display(menus)">
-          <div>Menus</div>
-        </button>
-        <button ion-button (click)="display(snacks)">
-          <div>Snacks</div>
-        </button>
+      <ion-col col-12>
+        <div *ngFor="let element of food">
+          <p>
+            {{ element.name }}
+          </p>
+          <img src="{{ element.img }}" alt="">
+          <p>
+            {{ element.price }} €
+          </p>
+          <button (click)="onAddFood(element)">Add</button>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
