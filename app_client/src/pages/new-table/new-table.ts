@@ -31,12 +31,14 @@ export class NewTablePage {
     public invoiceProvider: InvoiceProvider,
   ) {
     this.selectedTable = navParams.get('table');
+    this.clients = [];
     console.log('constructeur de table');
   }
 
   async getClientsByTable(id_table) {
     try {
-      this.clients = await this.clientsProvider.getClientsByTable(id_table);
+      // this.clients = await this.clientsProvider.getClientsByTable(id_table);
+      this.clients = [];
       this.clients.forEach((client, index) => {
         if (!client.lastname) {
           client.lastname = "Client " + (index + 1);
@@ -64,16 +66,44 @@ export class NewTablePage {
     try {
       let clientEmail = prompt("Client's email :");
       if (clientEmail) {
-        let client = await this.clientsProvider.getClientByEmail({ email: clientEmail });
-        // this.clients.push(client);
-        let newClients = [...this.clients, client];
-        this.clients = newClients;
+        // let found = this.tryFindClient(clientEmail);
+        // if (!found) {
+        //   clientEmail = prompt("Aucun client enregistré ne correspond à ce mail");
+        //   if (clientEmail) {
+        //     this.tryFindClient(clientEmail);
+        //   }
+        // }
+        let client = await this.clientsProvider.getClientByEmail(clientEmail);
+        if (client.length > 0) {
+          let newClients = [...this.clients, client[0]];
+          this.clients = newClients;
+        } else {
+          clientEmail = prompt("Aucun client enregistré ne correspond à ce mail");
+          if (clientEmail) {
+            let client = await this.clientsProvider.getClientByEmail(clientEmail);
+            if (client.length > 0) {
+              let newClients = [...this.clients, client[0]];
+              this.clients = newClients;
+            }
+          }
+        }
       }
     }
     catch (err) {
       console.log(err);
     }
   }
+
+  // async tryFindClient(clientEmail) {
+  //   let client = await this.clientsProvider.getClientByEmail(clientEmail);
+  //   if (client.length > 0) {
+  //     let newClients = [...this.clients, client[0]];
+  //     this.clients = newClients;
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   async onNewClient() {
     this.navCtrl.push(ClientFormPage, {
@@ -84,7 +114,7 @@ export class NewTablePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewTablePage');
-    this.getClientsByTable(this.selectedTable.id);
+    // this.getClientsByTable(this.selectedTable.id);
   }
 
 }

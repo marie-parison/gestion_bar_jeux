@@ -1,14 +1,20 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export interface IClientData {
   id?: number;
   lastname: string;
-  firstname: string;
+  fistname: string;
   birthdate: Date;
   email: string;
   gender: string;
 }
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 /*
   Generated class for the ClientsProvider provider.
@@ -20,28 +26,28 @@ export interface IClientData {
 @Injectable()
 export class ClientsProvider {
 
+  apiUrl = 'http://localhost:3000';
+  
   constructor(public http: HttpClient) {
     console.log('Hello ClientsProvider Provider');
   }
 
-  getClientsByTable(table): Promise<IClientData[]> {
-    // TODO requête au back pour récupérer tous les clients qui sont à cette table
-    return this.http.get<IClientData[]>('../../assets/mocks/mock-clients.json').toPromise();
+  // getClientsByTable(table): Promise<IClientData[]> {
+    // TODO requête au back pour récupérer tous les clients qui sont à cette table ?
+  //   return this.http.get<IClientData[]>('../../assets/mocks/mock-clients.json').toPromise();
+  // }
+
+  getClientByEmail(email): Promise<IClientData[]> {
+    return this.http.get<IClientData[]>(this.apiUrl + '/clients?email=' + email).toPromise();
   }
 
-  getClientByEmail(email): Promise<IClientData> {
-    // TODO requête au back pour récupérer les données du client qui a cet email
-    return this.http.get<IClientData>('../../assets/mocks/mock-client.json').toPromise();
+  createClient(client): Promise<any> {
+    return this.http.post<any>(this.apiUrl + '/clients', client, httpOptions).toPromise();
   }
 
-  createClient(client): Promise<IClientData> {
-    // TODO envoyer au back le contenu du formulaire pour créer le client dans la base    
-    return this.http.get<IClientData>('../../assets/mocks/mock-client.json').toPromise();
-  }
-
-  assignClientToTable(client, table): Promise<any> {
+  // assignClientToTable(client, table): Promise<any> {
     // TODO demander au back d'assigner le client à la table
-    return this.http.get<IClientData>('../../assets/mocks/mock-client.json').toPromise();
-  }
+    // return this.http.get<IClientData>('../../assets/mocks/mock-client.json').toPromise();
+  // }
 
 }

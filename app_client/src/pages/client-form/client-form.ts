@@ -21,6 +21,7 @@ export class ClientFormPage {
 
   form: FormGroup;
   table: ITableData;
+  error: string;
 
   constructor(
     public navCtrl: NavController,
@@ -31,24 +32,37 @@ export class ClientFormPage {
     this.table = this.navParams.get('table');
     this.form = this.formBuilder.group({
       lastname: [''],
-      firstname: [''],
+      fistname: [''],
       birthdate: [''],
       email: [''],
       gender: [''],
     });
   }
   
-  returnToTable() {
-    this.navCtrl.push(NewTablePage, {
-      table: this.table
-    });
-  }
+  // returnToTable() {
+  //   this.navCtrl.push(NewTablePage, {
+  //     table: this.table
+  //   });
+  // }
   
   async createClient() {
-    let client = await this.clientsProvider.createClient(this.form.value);
-    let tableClients = this.navParams.get('clients');
-    tableClients.push(client);
-    this.navCtrl.pop();    
+    // remplace les valeurs "" par des null pour préparer la requête au back
+    for (let property in this.form.value) {
+      if(this.form.value.hasOwnProperty(property)) {
+        if(this.form.value[property] == "") {
+          this.form.value[property] = null;
+        }
+      }
+    }
+    // création du client dans la base
+    try {
+      let client = await this.clientsProvider.createClient(this.form.value);
+      let tableClients = this.navParams.get('clients');
+      tableClients.push(client);
+      this.navCtrl.pop();    
+    } catch {
+      this.error = "Cet email apparaît déjà dans la base de données";
+    }
   }
 
   ionViewDidLoad() {

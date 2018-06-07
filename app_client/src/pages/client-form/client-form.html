@@ -20,22 +20,25 @@
       <ion-input [formControl]="form.controls['lastname']" type="text" placeholder="Nom"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Prénom</ion-label>  
-      <ion-input [formControl]="form.controls['firstname']" type="text" placeholder="Prénom"></ion-input>
+      <ion-label>Prénom</ion-label>
+      <ion-input [formControl]="form.controls['fistname']" type="text" placeholder="Prénom"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Date de naissance</ion-label>      
+      <ion-label>Date de naissance</ion-label>
       <ion-input [formControl]="form.controls['birthdate']" type="date"></ion-input>
     </ion-item>
+    <p *ngIf="error" class="red">
+      {{error}}
+    </p>
     <ion-item>
-      <ion-label>Email</ion-label>      
+      <ion-label>Email</ion-label>
       <ion-input [formControl]="form.controls['email']" type="email" placeholder="client@client.com"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Genre</ion-label>
       <ion-select formControlName="gender">
-        <ion-option value="f">Femme</ion-option>
-        <ion-option value="m">Homme</ion-option>
+        <ion-option value="female">Femme</ion-option>
+        <ion-option value="male">Homme</ion-option>
       </ion-select>
     </ion-item>
     <ion-row>

@@ -15,6 +15,7 @@ import {
 } from "./routes";
 
 const app = express();
+var bodyParser = require('body-parser');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -24,9 +25,15 @@ app.use(cookieParser());
 // Add headers
 app.use(allowAccessHeader);
 
+// pour pouvoir récupérer les données post
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 db.sequelize.sync()
     .then(() => console.log('Connection successfull'))
     .catch((err: any) => console.error('Unable to connect to the database', err));
+
+    
 
 app.use('/tables', tablesRouter);
 app.use('/clients', clientsRouter);
