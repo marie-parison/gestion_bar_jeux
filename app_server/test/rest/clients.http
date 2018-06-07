@@ -4,7 +4,7 @@ Accept: application/json
 
 ### Get request with parameter
 ### Should return []
-GET http://localhost:3000/clients?email=mamama@gmail.com
+GET http://localhost:3000/clients?email=mamama@gmail.com&limit=1
 Accept: application/json
 
 ### Clients ALL
@@ -52,6 +52,17 @@ Content-Type: application/json
   "email": "lol@lol.fr",
   "gender": "male",
   "birthdate": "1999-10-02"
+}
+
+### POST Clients CREATE A NEW ONE WITHOUT email and gender
+#### SHOULD WORK
+POST http://localhost:3000/clients
+Accept: application/json
+Content-Type: application/json
+
+{
+  "fistname": "Gouki",
+  "lastname" : "AKUMA"
 }
 
 ### POST Clients CREATE A NEW ONE

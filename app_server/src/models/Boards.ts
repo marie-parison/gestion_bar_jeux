@@ -45,7 +45,7 @@ export default (sequelize: Sequelize.Sequelize) => {
             through: {
                 model: db.InvoicesBoards,
             },
-            foreignKey: 'id_invoice'
+            foreignKey: 'id_board'
         });
     };
     return model;

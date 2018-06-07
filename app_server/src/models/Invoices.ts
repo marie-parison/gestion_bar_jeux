@@ -50,22 +50,26 @@ export default (sequelize: Sequelize.Sequelize) => {
             through: {
                 model: db.InvoicesFoods,
             },
-            foreignKey: 'id_food'
+            foreignKey: 'id_invoice'
         });
 
         model.belongsToMany(db.Boards, {
             through: {
                 model: db.InvoicesBoards,
             },
-            foreignKey: 'id_board'
+            foreignKey: 'id_invoice'
         });
 
         model.belongsToMany(db.Customers, {
             through: {
                 model: db.InvoicesCustomers,
             },
-            foreignKey: 'id_customer'
+            foreignKey: 'id_invoice'
         });
+
+        model.belongsTo(db.Tables, {
+            foreignKey: 'id_table'
+        })
     };
     return model;
 };

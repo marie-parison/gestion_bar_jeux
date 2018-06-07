@@ -11,6 +11,8 @@ const include: any = [
         }]
     },
     db.Foods,
+    db.Tables,
+    db.Customers,
 ];
 
 export class InvoicesController extends Controller{
@@ -68,7 +70,16 @@ export class InvoicesController extends Controller{
     static async create(req: Request, res: Response) {
         if(req.body) {
             try {
+                let customersId = req.body.clients_id;
                 let invoice = await db.Invoices.build(req.body).save();
+
+                for(let i = 0; i < customersId.length; i++ ) {
+                    await db.InvoicesCustomers.create({
+                        id_customer: customersId[i],
+                        id_invoice: invoice.id,
+                    });
+                }
+
                 res.status(200).json(invoice);
             } catch (e) {
                 res.status(500).json(e);

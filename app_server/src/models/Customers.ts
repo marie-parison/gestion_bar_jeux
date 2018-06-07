@@ -2,11 +2,11 @@ import * as Sequelize from "sequelize";
 
 interface CustomersAttributes {
     id?: number;
-    fistname?: string;
+    firstname?: string;
     lastname?: string;
-    email: string;
-    gender: string;
-    birthdate: string;
+    email?: string;
+    gender?: string;
+    birthdate?: string;
 }
 
 type CustomersInstance = Sequelize.Instance<CustomersAttributes> & CustomersAttributes;
@@ -17,7 +17,7 @@ const attributes: SequelizeAttributes<CustomersAttributes> = {
         primaryKey: true,
         autoIncrement: true,
     },
-    fistname: {
+    firstname: {
         type: Sequelize.STRING,
         allowNull: true,
     },
@@ -27,12 +27,12 @@ const attributes: SequelizeAttributes<CustomersAttributes> = {
     },
     email: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     gender: {
         type: Sequelize.ENUM,
         values: ['male', 'female'],
-        allowNull: false
+        allowNull: true
     },
     birthdate: {
         type: Sequelize.DATE,
@@ -48,7 +48,7 @@ export default (sequelize: Sequelize.Sequelize) => {
             through: {
                 model: db.InvoicesCustomers,
             },
-            foreignKey: 'id_invoice'
+            foreignKey: 'id_customer'
         });
     };
     return model;
