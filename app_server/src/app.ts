@@ -10,7 +10,8 @@ import {
     boardsRouter,
     clientsRouter,
     invoicesRouter,
-    tablesRouter
+    tablesRouter,
+    gamesRouter
 } from "./routes";
 
 const app = express();
@@ -31,5 +32,6 @@ app.use('/tables', tablesRouter);
 app.use('/clients', clientsRouter);
 app.use('/invoices', invoicesRouter);
 app.use('/boards', boardsRouter);
+app.use('/games', gamesRouter);
 
 module.exports = app;

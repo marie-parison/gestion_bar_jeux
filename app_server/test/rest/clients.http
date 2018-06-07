@@ -1,0 +1,83 @@
+### Get ALL
+GET http://localhost:3000/clients
+Accept: application/json
+
+### Get request with parameter
+### Should return []
+GET http://localhost:3000/clients?email=mamama@gmail.com
+Accept: application/json
+
+### Clients ALL
+GET http://localhost:3000/clients/
+Accept: application/json
+
+### Clients BY ID
+GET http://localhost:3000/clients/1
+Accept: application/json
+###
+GET http://localhost:3000/clients/2
+Accept: application/json
+###
+GET http://localhost:3000/clients/5
+Accept: application/json
+
+### Clients ALL BY EMAIL EXACT
+GET http://localhost:3000/clients?email=madenis@gmail.com
+Accept: application/json
+
+### Clients ALL BY EMAIL TEST CASE SENSITIVE
+GET http://localhost:3000/clients?email=madEnis@gmAil.com
+Accept: application/json
+
+### Clients ALL BY EMAIL LIKE
+GET http://localhost:3000/clients?email=ma
+Accept: application/json
+
+### Clients ALL BY EMAIL LIKE SHOULD RETURN NOTHING
+GET http://localhost:3000/clients?email=fdakfjdskfdskfmsdmfsdnjnndsjknfsajfdsljfndsnfsdan
+Accept: application/json
+
+### Clients BY ID
+GET http://localhost:3000/clients/1
+Accept: application/json
+
+### POST Clients CREATE A NEW ONE
+POST http://localhost:3000/clients
+Accept: application/json
+Content-Type: application/json
+
+{
+  "fistname": "Gouki",
+  "lastname" : null,
+  "email": "lol@lol.fr",
+  "gender": "male",
+  "birthdate": "1999-10-02"
+}
+
+### POST Clients CREATE A NEW ONE
+PUT http://localhost:3000/clients/5
+Accept: application/json
+Content-Type: application/json
+
+{
+  "fistname": "Gouki",
+  "lastname" : "AKUMA",
+  "email": "akuma@SHIT.fr",
+  "gender": "female",
+  "birthdate": "1999-10-04"
+}
+
+### POST Clients CREATE A NEW ONE WITH NO BODY
+POST http://localhost:3000/clients
+Accept: application/json
+Content-Type: application/json
+
+### POST Clients CREATE A NEW ONE WITH NO BODY
+DELETE http://localhost:3000/clients/5
+Accept: application/json
+Content-Type: application/json
+
+###
+
+
+

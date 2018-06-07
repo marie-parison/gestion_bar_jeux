@@ -1,25 +1,36 @@
 import {Controller} from ".";
-import {Request, Response, NextFunction} from "express";
+import {Request, Response} from "express";
 import db from "../models";
 
-export class ClientsController extends Controller{
+const include: any = [
+    db.GamePictures,
+    db.Editors,
+    db.Authors,
+    db.Contents,
+    db.Mecanisms,
+    db.Languages,
+    db.Categories,
+];
+
+export class GamesController extends Controller{
     static prepareWhere(req: Request): any|null {
         const queries = req.query;
 
         let where = null;
-        if(queries.email) {
+        if(queries.name) {
             where = { $and : [{}] };
 
             // It's not a duplicate, for the moment we only have email, but in futur it cas have several queries
-            if(queries.email) {
-                where.$and.push({email: {$like: `%${queries.email}%`}});
+            if(queries.name) {
+                where.$and.push({name: {$like: `%${queries.name}%`}});
             }
         }
+
         return where;
     }
 
     static async getAll(req: Request, res: Response) {
-        let options: any = {};
+        let options: any = { include };
         const {limit, offset} = req.query;
 
         if(limit) {
@@ -29,35 +40,41 @@ export class ClientsController extends Controller{
             options["offset"] = parseInt(offset);
         }
 
-        const where = ClientsController.prepareWhere(req);
+        const where = GamesController.prepareWhere(req);
         if(where) {
             options["where"] = where;
         }
 
         try {
-            let customers = await db.Customers.findAll(options);
-            res.status(200).json(customers);
+            let games = await db.Games.findAll(options);
+            res.status(200).json(games);
         } catch (e) {
             res.status(500).json(e);
         }
     }
 
     static async getById(req: Request, res: Response) {
+        let options: any = { include };
         let id = req.params.id;
 
         try {
-            let customers = await db.Customers.findById(id);
-            res.status(200).json(customers);
+            let game = await db.Games.findById(id, options);
+            res.status(200).json(game);
         } catch (e) {
             res.status(500).json(e);
         }
     }
 
+    /*
+     * TODO: must improve this part
+     * For include foreign relation data...
+     * But not need for our app for this moment :)
+     */
     static async create(req: Request, res: Response) {
         if(req.body) {
             try {
-                let customer = await db.Customers.build(req.body).save();
-                res.status(200).json(customer);
+                let game = await db.Games.build(req.body).save();
+                res.status(200).json(game);
             } catch (e) {
                 res.status(500).json(e);
             }
@@ -65,10 +82,10 @@ export class ClientsController extends Controller{
     }
 
     static async deleteById(req: Request, res: Response) {
-        let clientId = req.params.id;
-        if(clientId) {
+        let gameId = req.params.id;
+        if(gameId) {
             try {
-                let nbDeleted = await db.Customers.destroy({ where: { id: clientId } });
+                let nbDeleted = await db.Games.destroy({ where: { id: gameId } });
                 res.status(200).json({nbDeleted});
             } catch (e) {
                 res.status(500).json(e);
@@ -76,14 +93,17 @@ export class ClientsController extends Controller{
         }
     }
 
+    /*
+     * TODO: must improve this part
+     * For include foreign relation data...
+     * But not need for our app for this moment :)
+     */
     static async updateById(req: Request, res: Response) {
-        let clientId = req.params.id;
-        let clientData = req.body;
-        if(clientId && clientData) {
-            // delete the email because it should not bw allowed to update
-            delete clientData.email;
+        let gameId = req.params.id;
+        let gameData = req.body;
+        if(gameId && gameData) {
             try {
-                let nbUpdated = await db.Customers.update(clientData, { where: { id: clientId } });
+                let nbUpdated = await db.Games.update(gameData, { where: { id: gameId } });
                 res.status(200).json({nbUpdated});
             } catch (e) {
                 res.status(500).json(e);

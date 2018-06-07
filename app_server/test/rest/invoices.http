@@ -1,0 +1,86 @@
+### Add board id to invoices
+POST http://localhost:3000/invoices/1/boards/1
+Accept: application/json
+
+### Check if the board added is NOT available
+GET http://localhost:3000/boards/1
+Accept: application/json
+
+### Get Board By ID
+GET http://localhost:3000/invoices/1
+Accept: application/json
+
+### Delete board from the invoice
+DELETE http://localhost:3000/invoices/1/boards/1
+Accept: application/json
+
+### Check if the board removed is AVAILABLE
+GET http://localhost:3000/boards/1
+Accept: application/json
+
+### Check if the board is not present
+GET http://localhost:3000/invoices/1
+Accept: application/json
+
+### Get board ALL
+GET http://localhost:3000/invoices
+Accept: application/json
+
+### Get Board By ID
+GET http://localhost:3000/invoices/24
+Accept: application/json
+
+### Get Board By ID
+GET http://localhost:3000/invoices/4
+Accept: application/json
+
+
+
+### TO CONTINUE
+
+### POST a new BOARD
+POST http://localhost:3000/invoices
+Accept: application/json
+Content-Type: application/json
+
+{
+}
+
+### POST a new BOARD With missing indispensable data
+### SHOULD ERROR!
+POST http://localhost:3000/invoices
+Accept: application/json
+Content-Type: application/json
+
+{
+}
+
+### POST a new BOARD With missing data but not not necessary
+### SHOULD NOT ERROR
+POST http://localhost:3000/invoices
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id_game": 55
+}
+
+### UPDATE BY ID
+PUT http://localhost:3000/invoices/4
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id": 4,
+    "id_game": 55,
+    "available": false,
+    "condition": "middle"
+}
+
+
+### DELETE BY ID
+DELETE http://localhost:3000/invoices/5
+Accept: application/json
+
+
+

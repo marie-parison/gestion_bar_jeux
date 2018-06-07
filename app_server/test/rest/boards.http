@@ -1,0 +1,67 @@
+### Get board ALL
+GET http://localhost:3000/boards
+Accept: application/json
+
+
+### Get Board By ID
+GET http://localhost:3000/boards/1
+Accept: application/json
+
+### Get Board By ID
+GET http://localhost:3000/boards/24
+Accept: application/json
+
+### Get Board By ID
+GET http://localhost:3000/boards/4
+Accept: application/json
+
+### POST a new BOARD
+POST http://localhost:3000/boards
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id_game": 55,
+    "available": true,
+    "condition": "bad"
+}
+
+### POST a new BOARD With missing indispensable data
+### SHOULD ERROR!
+POST http://localhost:3000/boards
+Accept: application/json
+Content-Type: application/json
+
+{
+    "available": true,
+    "condition": "bad"
+}
+
+### POST a new BOARD With missing data but not not necessary
+### SHOULD NOT ERROR
+POST http://localhost:3000/boards
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id_game": 55
+}
+
+### UPDATE BY ID
+PUT http://localhost:3000/boards/4
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id": 4,
+    "id_game": 55,
+    "available": false,
+    "condition": "middle"
+}
+
+
+### DELETE BY ID
+DELETE http://localhost:3000/boards/5
+Accept: application/json
+
+

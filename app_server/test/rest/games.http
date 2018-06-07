@@ -1,0 +1,71 @@
+### Get ALL LIMIT a 10
+GET http://localhost:3000/games?limit=10
+Accept: application/json
+
+### Get BY ID
+GET http://localhost:3000/games/1
+Accept: application/json
+
+### Get BY ID
+GET http://localhost:3000/games/2
+Accept: application/json
+
+### Get BY ID
+GET http://localhost:3000/games/3
+Accept: application/json
+
+### GEt ALL COntaint panic on name
+GET http://localhost:3000/games?name=panic
+Accept: application/json
+
+### Get COntaint panic on name LIMIT 2
+GET http://localhost:3000/games?name=panic&limit=2
+Accept: application/json
+
+### GET COntaint "panic lab" on name
+GET http://localhost:3000/games?name=panic%lab
+Accept: application/json
+
+### GET ALL BY  LIKE SHOULD RETURN NOTHING
+GET http://localhost:3000/clients?email=fdakfjdskfdskfmsdmfsdnjnndsjknfsajfdsljfndsnfsdan
+Accept: application/json
+
+
+
+
+
+
+
+### POST Clients CREATE A NEW ONE
+### NOT AVAILABLE, DONT USE IT, I NEVER TRY IT YET
+### NO NEED FOR THIS APP, WE ALREADY HAVE ALL GAMES
+### SAME FOR PUT DELETE
+POST http://localhost:3000/games
+Accept: application/json
+Content-Type: application/json
+
+{
+}
+
+### POST Clients CREATE A NEW ONE
+PUT http://localhost:3000/games/5
+Accept: application/json
+Content-Type: application/json
+
+{
+}
+
+### POST Clients CREATE A NEW ONE WITH NO BODY
+POST http://localhost:3000/games
+Accept: application/json
+Content-Type: application/json
+
+### POST Clients CREATE A NEW ONE WITH NO BODY
+DELETE http://localhost:3000/games/5
+Accept: application/json
+Content-Type: application/json
+
+###
+
+
+
