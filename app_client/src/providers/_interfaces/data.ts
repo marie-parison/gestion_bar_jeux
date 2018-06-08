@@ -68,6 +68,7 @@ export interface IBoardData {
   available?: boolean;
   condition?: string;
   game: IGameData;
+  invoices: IInvoiceData[];
 }
 
 export interface ICustomerData {

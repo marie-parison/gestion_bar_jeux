@@ -15,6 +15,13 @@ Accept: application/json
 GET http://localhost:3000/boards/4
 Accept: application/json
 
+### Get Board By ID
+POST http://localhost:3000/boards/1/remove
+Accept: application/json
+
+{
+}
+
 ### POST a new BOARD
 POST http://localhost:3000/boards
 Accept: application/json

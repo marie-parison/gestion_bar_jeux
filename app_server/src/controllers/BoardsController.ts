@@ -2,10 +2,17 @@ import {Controller} from ".";
 import {Request, Response} from "express";
 import db from "../models";
 
-const include: any = {
-    model: db.Games,
-    include: [db.GamePictures]
-};
+const include: any = [
+    {
+        model: db.Games,
+        include: [db.GamePictures]
+    },
+    {
+        model: db.Invoices,
+        order: [['id', 'DESC']],
+        include: db.Tables,
+    }
+];
 
 export class BoardsController extends Controller{
     static prepareWhere(req: Request): any|null {
@@ -92,6 +99,37 @@ export class BoardsController extends Controller{
             try {
                 let nbUpdated = await db.Boards.update(boardData, { where: { id: boardId } });
                 res.status(200).json({nbUpdated});
+            } catch (e) {
+                res.status(500).json(e);
+            }
+        }
+    }
+
+    static async AvailableBoardById(req: Request, res: Response) {
+        let boardId = req.params.id;
+
+        if(boardId) {
+            // delete the email because it should not bw allowed to update
+            try {
+                let board = await db.Boards.findById(boardId);
+                board.setInvoices(null);
+                await board.update({available: true});
+                board = await db.Boards.findById(boardId);
+                res.status(200).json(board);
+            } catch (e) {
+                res.status(500).json(e);
+            }
+        }
+    }
+
+    static async notAvailableBoardById(req: Request, res: Response) {
+        let boardId = req.params.id;
+        if(boardId) {
+            try {
+                let board = await db.Boards.findById(boardId);
+                await board.update({available: false});
+                board = await db.Boards.findById(boardId);
+                res.status(200).json(board);
             } catch (e) {
                 res.status(500).json(e);
             }

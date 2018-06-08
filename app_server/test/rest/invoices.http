@@ -1,9 +1,17 @@
 ### Add board id to invoices
-POST http://localhost:3000/invoices/1/boards/2
+POST http://localhost:3000/invoices/1/boards/1
 Accept: application/json
 
 ### Check if the board added is NOT available
 GET http://localhost:3000/boards/2
+Accept: application/json
+
+### Check if the board added is NOT available
+POST http://localhost:3000/boards/2/free
+Accept: application/json
+
+### Check if the board added is NOT available
+POST http://localhost:3000/boards/2/remove
 Accept: application/json
 
 ### Get Board By ID

@@ -1,3 +1,4 @@
+import { BoardsPage } from './../pages/boards/boards';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -23,6 +24,7 @@ import { InvoiceProvider } from '../providers/invoice/invoice';
 import { OrdersProvider } from '../providers/orders/orders';
 import { GamesProvider } from '../providers/games/games';
 import { FoodProvider } from '../providers/food/food';
+import { BoardsProvider } from '../providers/boards/boards';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { FoodProvider } from '../providers/food/food';
     FacturePage,
     NewOrderPage,
     NewGamePage,
+    BoardsPage,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,7 @@ import { FoodProvider } from '../providers/food/food';
   entryComponents: [
     MyApp,
     AboutPage,
-    ClientFormPage,    
+    ClientFormPage,
     ContactPage,
     HomePage,
     TabsPage,
@@ -56,6 +59,7 @@ import { FoodProvider } from '../providers/food/food';
     FacturePage,
     NewOrderPage,
     NewGamePage,
+    BoardsPage,
   ],
   providers: [
     StatusBar,
@@ -67,6 +71,7 @@ import { FoodProvider } from '../providers/food/food';
     OrdersProvider,
     GamesProvider,
     FoodProvider,
+    BoardsProvider,
   ]
 })
 export class AppModule {}
