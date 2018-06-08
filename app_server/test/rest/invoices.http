@@ -1,9 +1,9 @@
 ### Add board id to invoices
-POST http://localhost:3000/invoices/1/boards/1
+POST http://localhost:3000/invoices/1/boards/2
 Accept: application/json
 
 ### Check if the board added is NOT available
-GET http://localhost:3000/boards/1
+GET http://localhost:3000/boards/2
 Accept: application/json
 
 ### Get Board By ID
@@ -11,7 +11,7 @@ GET http://localhost:3000/invoices/1
 Accept: application/json
 
 ### Delete board from the invoice
-DELETE http://localhost:3000/invoices/1/boards/1
+DELETE http://localhost:3000/invoices/1/boards/2
 Accept: application/json
 
 ### Check if the board removed is AVAILABLE
@@ -26,14 +26,17 @@ Accept: application/json
 GET http://localhost:3000/invoices
 Accept: application/json
 
+### Get board ALL
+GET http://localhost:3000/invoices?limit=2
+Accept: application/json
+
 ### Get Board By ID
-GET http://localhost:3000/invoices/24
+GET http://localhost:3000/invoices/17
 Accept: application/json
 
 ### Get Board By ID
 GET http://localhost:3000/invoices/7
 Accept: application/json
-
 
 
 ### POST a new INVOICE
@@ -42,7 +45,18 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "id_table": 2,
+    "id_table": 5,
+    "clients_id": [ 1, 2,  4 ]
+}
+
+### POST a new INVOICE
+### SHOULD RETURN table not EXIST
+POST http://localhost:3000/invoices
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id_table": 9999999,
     "clients_id": [ 1, 2,  4 ]
 }
 

@@ -1,0 +1,8 @@
+### Get all
+GET http://localhost:3000/tables/
+Accept: application/json
+
+### Get By ID
+GET http://localhost:3000/tables/1
+Accept: application/json
+

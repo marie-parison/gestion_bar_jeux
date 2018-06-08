@@ -49,7 +49,7 @@ Content-Type: application/json
 {
   "fistname": "Gouki",
   "lastname" : null,
-  "email": "lol@lol.fr",
+  "email": "lol@lol1.fr",
   "gender": "male",
   "birthdate": "1999-10-02"
 }
@@ -65,15 +65,15 @@ Content-Type: application/json
   "lastname" : "AKUMA"
 }
 
-### POST Clients CREATE A NEW ONE
-PUT http://localhost:3000/clients/5
+### UPDATE CLIENT by id
+PUT http://localhost:3000/clients/9
 Accept: application/json
 Content-Type: application/json
 
 {
-  "fistname": "Gouki",
-  "lastname" : "AKUMA",
-  "email": "akuma@SHIT.fr",
+  "fistname": "Benjamin",
+  "lastname" : "NOOB",
+  "email": "akuma@Noob.fr",
   "gender": "female",
   "birthdate": "1999-10-04"
 }

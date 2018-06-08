@@ -68,10 +68,22 @@ export class InvoicesController extends Controller{
     }
 
     static async create(req: Request, res: Response) {
+        let options: any = { include };
         if(req.body) {
             try {
+                let tableId = parseInt(req.body.id_table);
+                let table = await db.Tables.findById(tableId);
+
+                if(!table) {
+                    return res.status(500).json({message: "Table not exist"});
+                } else if (!table.available) {
+                    return res.status(500).json({message: "Table not available"});
+                }
                 let customersId = req.body.clients_id;
                 let invoice = await db.Invoices.build(req.body).save();
+
+                await db.Tables.update({available: false}, {where: {id: tableId}});
+                // await db.Tables.updateById(tableId, {available: false});
 
                 for(let i = 0; i < customersId.length; i++ ) {
                     await db.InvoicesCustomers.create({
@@ -79,6 +91,8 @@ export class InvoicesController extends Controller{
                         id_invoice: invoice.id,
                     });
                 }
+
+                invoice = await db.Invoices.findById(invoice.id, options);
 
                 res.status(200).json(invoice);
             } catch (e) {
@@ -126,6 +140,7 @@ export class InvoicesController extends Controller{
                 return res.status(500).json({message: "Board not available"});
             }
             await invoice.addBoard(board);
+            invoice = await db.Invoices.findById(invoiceId, options);
             await board.update({available: false});
             res.status(200).json(invoice);
         } catch (e) {
@@ -145,6 +160,7 @@ export class InvoicesController extends Controller{
             
             await invoice.removeBoard(board);
             await board.update({available: true});
+            invoice = await db.Invoices.findById(invoiceId, options);
             res.status(200).json(invoice);
         } catch (e) {
             console.log(e);
