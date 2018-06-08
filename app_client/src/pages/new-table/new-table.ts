@@ -37,7 +37,6 @@ export class NewTablePage {
 
   async getClientsByTable(id_table) {
     try {
-      // this.clients = await this.clientsProvider.getClientsByTable(id_table);
       this.clients = [];
       this.clients.forEach((client, index) => {
         if (!client.lastname) {
@@ -49,27 +48,15 @@ export class NewTablePage {
       console.log(err);
     }
   }
-
-  async createInvoice() {
-    try {
-      let { id } = await this.invoiceProvider.createInvoice(this.selectedTable.id, this.clients);
-      this.navCtrl.push(FacturePage, {
-        id_invoice: id
-      });
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-
+  
   async onKnownClient() {
     try {
       let clientEmail = prompt("Client's email :");
       if (clientEmail) {
         // let found = this.tryFindClient(clientEmail);
         // if (!found) {
-        //   clientEmail = prompt("Aucun client enregistré ne correspond à ce mail");
-        //   if (clientEmail) {
+          //   clientEmail = prompt("Aucun client enregistré ne correspond à ce mail");
+          //   if (clientEmail) {
         //     this.tryFindClient(clientEmail);
         //   }
         // }
@@ -93,28 +80,43 @@ export class NewTablePage {
       console.log(err);
     }
   }
-
+  
   // async tryFindClient(clientEmail) {
-  //   let client = await this.clientsProvider.getClientByEmail(clientEmail);
-  //   if (client.length > 0) {
-  //     let newClients = [...this.clients, client[0]];
-  //     this.clients = newClients;
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-  async onNewClient() {
-    this.navCtrl.push(ClientFormPage, {
-      table: this.selectedTable,
+    //   let client = await this.clientsProvider.getClientByEmail(clientEmail);
+    //   if (client.length > 0) {
+      //     let newClients = [...this.clients, client[0]];
+      //     this.clients = newClients;
+      //     return true;
+      //   } else {
+        //     return false;
+        //   }
+        // }
+        
+        async onNewClient() {
+          this.navCtrl.push(ClientFormPage, {
+            table: this.selectedTable,
       clients: this.clients,
     });
   }
-
+  
+  async createInvoice() {
+    try {
+      let clients_id = [];
+      this.clients.forEach(client => {
+        clients_id.push(client.id);
+      });
+      let { id } = await this.invoiceProvider.createInvoice(this.selectedTable.id, clients_id);
+      this.navCtrl.push(FacturePage, {
+        id_invoice: id
+      });
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewTablePage');
-    // this.getClientsByTable(this.selectedTable.id);
   }
-
+  
 }

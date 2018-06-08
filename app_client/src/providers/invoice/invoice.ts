@@ -29,13 +29,8 @@ export class InvoiceProvider {
     console.log('Hello InvoiceProvider Provider');
   }
 
-  createInvoice(id_table, clients) {
-    // TODO envoyer la requête de création de facture au back, récupérer du back les données de la facture créée
-    return this.http.post<IInvoiceData>(this.apiUrl + '/invoices/', {'id_table': id_table, 'clients': clients}, httpOptions).toPromise();
-  }
-
-  createClient(client): Promise<any> {
-    return this.http.post<any>(this.apiUrl + '/clients', client, httpOptions).toPromise();
+  createInvoice(id_table, clients_id) {
+    return this.http.post<IInvoiceData>(this.apiUrl + '/invoices', {id_table, clients_id}, httpOptions).toPromise();
   }
 
 }

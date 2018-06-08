@@ -32,19 +32,13 @@ export class ClientFormPage {
     this.table = this.navParams.get('table');
     this.form = this.formBuilder.group({
       lastname: [''],
-      fistname: [''],
+      firstname: [''],
       birthdate: [''],
       email: [''],
       gender: [''],
     });
   }
-  
-  // returnToTable() {
-  //   this.navCtrl.push(NewTablePage, {
-  //     table: this.table
-  //   });
-  // }
-  
+
   async createClient() {
     // remplace les valeurs "" par des null pour préparer la requête au back
     for (let property in this.form.value) {

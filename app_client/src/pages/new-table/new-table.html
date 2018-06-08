@@ -19,7 +19,7 @@
   <button ion-button (click)="onNewClient()">Nouveau client</button>
   <h3>Clients :</h3>
   <ul *ngFor="let client of clients">
-      <li>{{client.fistname}} {{client.lastname}}</li>
+      <li>{{client.firstname}} {{client.lastname}}</li>
   </ul>
 
   <button ion-button block (click)="createInvoice()">OK</button>

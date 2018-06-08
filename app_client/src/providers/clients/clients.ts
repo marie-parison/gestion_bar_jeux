@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export interface IClientData {
   id?: number;
   lastname: string;
-  fistname: string;
+  firstname: string;
   birthdate: Date;
   email: string;
   gender: string;
