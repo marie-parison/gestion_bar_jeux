@@ -24,7 +24,7 @@ export class OrdersProvider {
   }
 
   getOrders(id_invoice: Number): Promise<IOrderData[]> {
-    return this.http.get<IOrderData[]>("../../assets/mocks/mock-orders.json").toPromise();
+    return this.http.get<IOrderData[]>("http://localhost:3000/invoices/1" + id_invoice).toPromise();
   }
 
 }

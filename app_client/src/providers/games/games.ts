@@ -20,6 +20,8 @@ export class GamesProvider {
   constructor(public http: HttpClient) {
   }
 
+  //?limit=2
+
   public returnGame(game: IGameData){
     return this.http.put<boolean>('' + game.id, game).toPromise();
   }

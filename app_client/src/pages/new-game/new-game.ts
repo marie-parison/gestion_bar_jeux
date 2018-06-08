@@ -18,6 +18,8 @@ export class NewGamePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  public 
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewGamePage');
   }

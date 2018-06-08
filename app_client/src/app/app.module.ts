@@ -20,7 +20,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TablesProvider } from '../providers/tables-service/tables-service';
 import { ClientsProvider } from '../providers/clients/clients';
 import { InvoiceProvider } from '../providers/invoice/invoice';
-import { OrdersProvider } from '../providers/orders/orders';
 import { GamesProvider } from '../providers/games/games';
 import { FoodProvider } from '../providers/food/food';
 
@@ -64,7 +63,6 @@ import { FoodProvider } from '../providers/food/food';
     TablesProvider,
     ClientsProvider,
     InvoiceProvider,
-    OrdersProvider,
     GamesProvider,
     FoodProvider,
   ]

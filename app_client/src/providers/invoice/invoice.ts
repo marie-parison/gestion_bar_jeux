@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IInvoiceData } from '../_interfaces/data';
 
 export interface IInvoiceData {
   id: number;
@@ -18,7 +19,10 @@ export interface IInvoiceData {
 export class InvoiceProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello InvoiceProvider Provider');
+  }
+
+  getInvoice(id_invoice: Number): Promise<IInvoiceData> {
+    return this.http.get<IInvoiceData>("http://localhost:3000/invoices/1" + id_invoice).toPromise();
   }
 
   createInvoice(id_table, clients) {

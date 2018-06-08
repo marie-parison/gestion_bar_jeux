@@ -26,7 +26,7 @@ export class FoodProvider {
     return this.http.post<boolean>('', food).toPromise();
   }
 
-  public getFood(): Promise<IFoodData[]>{
+  public getFood(id_invoice: Number): Promise<IFoodData[]>{
     return this.http.get<IFoodData[]>('').toPromise();
   }
 
